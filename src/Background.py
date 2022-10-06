@@ -1,21 +1,18 @@
-class Background:
-    y = 0
-    background = None
-    height = None
-    movingSpeed = None
+import Graphics
 
-    def __init__(self, bg, movingSpeed):
-        self.background = bg
-        self.height = bg
+
+class Background(Graphics.Graphics):
+    yPos = 0
+    movingSpeed = 0
+
+    def __init__(self, path, movingSpeed):
+        super().__init__(path)
         self.movingSpeed = movingSpeed
 
     def shiftDown(self):
-        self.y += self.movingSpeed
-        if self.y > self.background.get_size()[1]:
-            self.y = 0
+        self.yPos += self.movingSpeed
+        if self.yPos > self.getHeight():
+            self.yPos = 0
 
     def getY(self):
-        return self.y
-
-    def getBg(self):
-        return self.background
+        return self.yPos
