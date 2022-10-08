@@ -1,37 +1,19 @@
-import Game
-import Graphics
+from Window import WIDTH, HEIGHT
+from Graphics import Graphics
+from Movement import Movement
 
 
-class SpaceShip(Graphics.Graphics):
-    xPos = 0
-    yPos = 0
-    speed = 0
-
-    def __init__(self, path, speed):
-        super().__init__(path)
+class SpaceShip(Graphics, Movement):
+    hp = 0
+    
+    def __init__(self, path, speed, hp):
+        Graphics.__init__(self, path)
+        Movement.__init__(self, speed)
         self.scaleUp()
-        self.speed = speed
-        self.xPos = Game.WIDTH / 2 - self.getWidth() / 2
-        self.yPos = Game.HEIGHT - 150
-
-    def moveUp(self):
-        if self.yPos > 0:
-            self.yPos -= 1 * self.speed
+        self.hp = hp
+        self.xPos = WIDTH / 2 - self.getWidth() / 2
+        self.yPos = HEIGHT - 150
 
     def moveDown(self):
-        if self.yPos < Game.HEIGHT - self.getHeight():
+        if self.yPos < HEIGHT - self.getHeight():
             self.yPos += 1 * self.speed
-
-    def moveLeft(self):
-        if self.xPos > 0:
-            self.xPos -= 1 * self.speed
-
-    def moveRight(self):
-        if self.xPos < Game.WIDTH - self.getWidth():
-            self.xPos += 1 * self.speed
-
-    def getXPos(self):
-        return self.xPos
-
-    def getYPos(self):
-        return self.yPos

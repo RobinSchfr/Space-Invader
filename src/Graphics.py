@@ -16,5 +16,5 @@ class Graphics:
     def getHeight(self):
         return self.image.get_height()
 
-    def scaleUp(self):
-        self.image = pygame.transform.scale(self.image, (100, 100))
+    def scaleUp(self, k=1):
+        self.image = pygame.transform.scale(self.image, (100 * k, 100 * k))
