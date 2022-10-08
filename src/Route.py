@@ -18,7 +18,8 @@ class Route:
 
     def newRoute(self, xPos, yPos):
         origin = pygame.Vector2(xPos, yPos)
-        self.dest = pygame.Vector2(random.randint(self.width, WIDTH - self.width), random.randint(int(yPos) + 5, int(yPos) + random.randint(20, 120)))
+        self.dest = pygame.Vector2(random.randint(self.width, WIDTH - self.width),
+                                   random.randint(int(yPos) + 5, int(yPos) + random.randint(20, 120)))
         self.directionVector = self.dest - origin
         self.directionVector = self.directionVector.normalize() * self.speed
 

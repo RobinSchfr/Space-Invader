@@ -19,3 +19,6 @@ class CreaturesManagement:
         for creature in self.creatures:
             if creature.isOutOfBounds():
                 self.creatures.remove(creature)
+
+    def getCreatures(self):
+        return self.creatures

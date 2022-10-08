@@ -1,14 +1,12 @@
 from Window import WIDTH, HEIGHT
 from Graphics import Graphics
-from Movement import Movement
 
 
-class SpaceShip(Graphics, Movement):
+class SpaceShip(Graphics):
     hp = 0
     
     def __init__(self, path, speed, hp):
-        Graphics.__init__(self, path)
-        Movement.__init__(self, speed)
+        Graphics.__init__(self, path, speed)
         self.scaleUp()
         self.hp = hp
         self.xPos = WIDTH / 2 - self.getWidth() / 2

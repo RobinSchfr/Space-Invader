@@ -3,11 +3,9 @@ import Graphics
 
 class Background(Graphics.Graphics):
     yPos = 0
-    movingSpeed = 0
 
     def __init__(self, path, movingSpeed):
-        super().__init__(path)
-        self.movingSpeed = movingSpeed
+        super().__init__(path, movingSpeed)
 
     def shiftDown(self):
         self.yPos += self.movingSpeed

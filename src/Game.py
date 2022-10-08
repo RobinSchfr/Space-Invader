@@ -36,7 +36,7 @@ class Game:
         pygame.display.flip()
 
     def drawBG(self):
-        self.screen.blit(self.bg.getImage(), (0, self.bg.getY()-self.bg.getHeight()))
+        self.screen.blit(self.bg.getImage(), (0, self.bg.getY() - self.bg.getHeight()))
         self.screen.blit(self.bg.getImage(), (0, self.bg.getY()))
         self.screen.blit(self.bgStars.getImage(), (0, self.bgStars.getY() - self.bgStars.getHeight()))
         self.screen.blit(self.bgStars.getImage(), (0, self.bgStars.getY()))
@@ -64,7 +64,13 @@ class Game:
             self.handleEvents()
             self.shiftBG()
             self.draw()
+            self.checkForCollision()
             self.clock.tick(self.FPS)
+
+    def checkForCollision(self):
+        for creature in self.creaturesManagement.getCreatures():
+            if self.ship.getHitbox().colliderect(creature.getHitbox()):
+                print('Hit')
 
     def handleEvents(self):
         keys = pygame.key.get_pressed()
