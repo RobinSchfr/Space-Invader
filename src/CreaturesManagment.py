@@ -6,18 +6,16 @@ class CreaturesManagment:
     creatureCount = None
 
     def __init__(self):
-        self.creatureCount = 1
-        self.spawnCreature()
-        self.spawnCreature()
-        self.spawnCreature()
-        self.spawnCreature()
-        self.spawnCreature()
+        self.creatureCount = 5
 
     def spawnCreature(self):
-        c = Creature(1)
-        self.creatures.append(c)
+        currentCreatures = len(self.creatures)
+        for i in range(self.creatureCount - currentCreatures):
+            c = Creature(1)
+            self.creatures.append(c)
 
     def update(self):
+        self.spawnCreature()
         for creature in self.creatures:
             if creature.isOutOfBounds():
                 self.creatures.remove(creature)

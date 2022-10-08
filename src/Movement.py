@@ -1,4 +1,4 @@
-from Window import WIDTH
+from Window import WIDTH, HEIGHT
 
 
 class Movement:
@@ -14,7 +14,8 @@ class Movement:
             self.yPos -= 1 * self.speed
 
     def moveDown(self):
-        self.yPos += 1 * self.speed
+        if self.yPos < HEIGHT - self.getHeight():
+            self.yPos += 1 * self.speed / 2
 
     def moveLeft(self):
         if self.xPos > 0:

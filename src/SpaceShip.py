@@ -13,7 +13,3 @@ class SpaceShip(Graphics, Movement):
         self.hp = hp
         self.xPos = WIDTH / 2 - self.getWidth() / 2
         self.yPos = HEIGHT - 150
-
-    def moveDown(self):
-        if self.yPos < HEIGHT - self.getHeight():
-            self.yPos += 1 * self.speed
