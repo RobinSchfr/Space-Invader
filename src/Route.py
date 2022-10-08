@@ -1,6 +1,6 @@
 import random
 import pygame
-from Window import WIDTH, HEIGHT
+from Window import WIDTH
 
 
 class Route:

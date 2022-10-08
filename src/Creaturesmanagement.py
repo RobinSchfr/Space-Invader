@@ -1,12 +1,12 @@
 from Creature import Creature
 
 
-class CreaturesManagment:
+class CreaturesManagement:
     creatures = []
     creatureCount = None
 
     def __init__(self):
-        self.creatureCount = 5
+        self.creatureCount = 1
 
     def spawnCreature(self):
         currentCreatures = len(self.creatures)

@@ -3,7 +3,8 @@ import sys
 from Window import WIDTH, HEIGHT
 from Background import Background
 from SpaceShip import SpaceShip
-from CreaturesManagment import CreaturesManagment
+from Creaturesmanagement import CreaturesManagement
+from Levelmanagement import LevelManagement
 
 
 class Game:
@@ -14,21 +15,24 @@ class Game:
     bgStars = None
     ship = None
     creaturesManagement = None
+    levelManagement = None
 
     def __init__(self):
         pygame.init()
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
         pygame.display.set_caption('Space Invader')
         self.clock = pygame.time.Clock()
-        self.bg = Background('../graphics/Background.png', 3)
+        self.bg = Background('../graphics/Background.png', 2)
         self.bgStars = Background('../graphics/Background_stars.png', 1)
-        self.ship = SpaceShip('../graphics/spaceship-1.png', 5, 5)
-        self.creaturesManagement = CreaturesManagment()
+        self.ship = SpaceShip('../graphics/spaceship-1.png', 2, 5)
+        self.creaturesManagement = CreaturesManagement()
+        self.levelManagement = LevelManagement()
 
     def draw(self):
         self.drawBG()
         self.drawCreatures()
         self.drawShip()
+        self.drawLevel()
         pygame.display.flip()
 
     def drawBG(self):
@@ -37,14 +41,19 @@ class Game:
         self.screen.blit(self.bgStars.getImage(), (0, self.bgStars.getY() - self.bgStars.getHeight()))
         self.screen.blit(self.bgStars.getImage(), (0, self.bgStars.getY()))
 
-    def drawShip(self):
-        self.screen.blit(self.ship.getImage(), (self.ship.getXPos(), self.ship.getYPos()))
+    def drawLevel(self):
+        font = pygame.font.SysFont('Consolas', 30)
+        scoreLabel = font.render(str(self.levelManagement.getLevel()).zfill(3), True, pygame.Color('#00ffff'))
+        self.screen.blit(scoreLabel, (5, 5))
 
     def drawCreatures(self):
         self.creaturesManagement.update()
         for creature in self.creaturesManagement.creatures:
             creature.move()
             self.screen.blit(creature.getImage(), (creature.getXPos(), creature.getYPos()))
+
+    def drawShip(self):
+        self.screen.blit(self.ship.getImage(), (self.ship.getXPos(), self.ship.getYPos()))
 
     def shiftBG(self):
         self.bg.shiftDown()

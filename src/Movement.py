@@ -31,6 +31,9 @@ class Movement:
     def setYPos(self, val):
         self.yPos = val
 
+    def setSpeed(self, val):
+        self.speed = val
+
     def getXPos(self):
         return self.xPos
 
