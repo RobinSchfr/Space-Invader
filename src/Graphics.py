@@ -1,5 +1,5 @@
+from Game import Game
 import pygame
-from Window import WIDTH, HEIGHT
 
 
 class Graphics:
@@ -32,7 +32,7 @@ class Graphics:
             self.hitbox.y = self.yPos
 
     def moveDown(self, openBounds=False):
-        if self.yPos < HEIGHT - self.getHeight() or openBounds:
+        if self.yPos < Game.HEIGHT - self.getHeight() or openBounds:
             self.yPos += 1 * self.movingSpeed / 2
             self.hitbox.y = self.yPos
 
@@ -42,7 +42,7 @@ class Graphics:
             self.hitbox.x = self.xPos
 
     def moveRight(self):
-        if self.xPos < WIDTH - self.getWidth():
+        if self.xPos < Game.WIDTH - self.getWidth():
             self.xPos += 1 * self.movingSpeed
             self.hitbox.x = self.xPos
 
@@ -67,3 +67,6 @@ class Graphics:
 
     def getHitbox(self):
         return self.hitbox
+
+    def isOutOfBounds(self):
+        pass
