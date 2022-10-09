@@ -12,7 +12,7 @@ class EntityManagement:
     hostileBullets = []
 
     def __init__(self, gameInstance):
-        self.creatureCount = 2
+        self.creatureCount = 1
         self.game = gameInstance
         self.ship = SpaceShip('../graphics/spaceship-1.png', 2, 5)
 
@@ -42,6 +42,9 @@ class EntityManagement:
                 if creature.getHitbox().collidepoint(bullet.xPos + bullet.getWidth() / 2, bullet.yPos):
                     print('Bullet hit')
                     self.creatures.remove(creature)
+                    self.playerBullets.remove(bullet)
+                    self.game.levelManagement.nextLevel()
+                    self.creatureCount += 1
 
     def fire(self):
         bullet = Laserbullet(self.ship.getXPos(), self.ship.getYPos(), True)
