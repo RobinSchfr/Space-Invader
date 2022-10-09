@@ -1,17 +1,20 @@
 from Creature import Creature
-from Game import Game
+from Laserbullet import Laserbullet
+from SpaceShip import SpaceShip
 
 
 class EntityManagement:
     creatureCount = None
     game = None
+    ship = None
     creatures = []
     playerBullets = []
     hostileBullets = []
 
     def __init__(self, gameInstance):
-        self.creatureCount = 1
+        self.creatureCount = 2
         self.game = gameInstance
+        self.ship = SpaceShip('../graphics/spaceship-1.png', 2, 5)
 
     def spawnCreature(self):
         currentCreatures = len(self.creatures)
@@ -30,6 +33,22 @@ class EntityManagement:
                 else:
                     collection = self.hostileBullets
                 collection.remove(entity)
+
+    def checkForCollision(self):
+        for creature in self.creatures:
+            if self.ship.getHitbox().colliderect(creature.getHitbox()):
+                print('Hit')
+            for bullet in self.playerBullets:
+                if creature.getHitbox().collidepoint(bullet.xPos + bullet.getWidth() / 2, bullet.yPos):
+                    print('Bullet hit')
+                    self.creatures.remove(creature)
+
+    def fire(self):
+        bullet = Laserbullet(self.ship.getXPos(), self.ship.getYPos(), True)
+        self.playerBullets.append(bullet)
+
+    def getShip(self):
+        return self.ship
 
     def getCreatures(self):
         return self.creatures

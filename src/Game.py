@@ -19,7 +19,7 @@ class Game:
         self.levelManagement = LevelManagement(self)
         self.bg = Background('../graphics/Background.png', 2)
         self.bgStars = Background('../graphics/Background_stars.png', 1)
-        self.ship = SpaceShip('../graphics/spaceship-1.png', 2, self.entityManagement, 5)
+        self.ship = self.entityManagement.getShip()
 
     def draw(self):
         self.drawBG()
@@ -57,13 +57,8 @@ class Game:
             self.handleEvents()
             self.shiftBG()
             self.draw()
-            self.checkForCollision()
+            self.entityManagement.checkForCollision()
             self.clock.tick(self.FPS)
-
-    def checkForCollision(self):
-        for creature in self.entityManagement.getCreatures():
-            if self.ship.getHitbox().colliderect(creature.getHitbox()):
-                print('Hit')
 
     def handleEvents(self):
         keys = pygame.key.get_pressed()
@@ -77,7 +72,7 @@ class Game:
             self.ship.moveRight()
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-                self.ship.fire()
+                self.entityManagement.fire()
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE or event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
@@ -87,7 +82,6 @@ if __name__ == '__main__':
     from Background import Background
     from Entitymanagement import EntityManagement
     from Levelmanagement import LevelManagement
-    from SpaceShip import SpaceShip
     import pygame
     import sys
     g = Game()
